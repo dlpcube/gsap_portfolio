@@ -4,9 +4,12 @@ A gsap based portfolio made in Next.JS.
 # Preview
 -- screenshot --
 
+# Built with
+Next.JS, React, Tailwind CSS, and GSAP.
+
 # Getting Started
 
-# Built with
+
 
 # Installation and Build Instructions
 

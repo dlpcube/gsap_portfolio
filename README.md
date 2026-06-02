@@ -25,9 +25,9 @@ npm run main
 ```
 
 ## Roadmap
-- [] Implement portfolio gallery section
-- [] Add Contact Section
-- [] Add bio animation
+- [ ] Implement portfolio gallery section
+- [ ] Add Contact Section
+- [ ] Add bio animation
 ## License
 
 MIT License. See [LICENSE](./LICENSE)

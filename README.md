@@ -13,6 +13,6 @@ Next.JS, React, Tailwind CSS, and GSAP.
 
 # Installation and Build Instructions
 
-# Quick Start
+# Usage
 
 # Roadmap

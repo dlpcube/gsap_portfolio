@@ -6,7 +6,9 @@
 ![preview gif/screenshot]
 
 ## Features
-Next.JS, 
+- Parallax Effect
+- Shapeshifting
+- Multiple z-index's for gallery effect
 
 ## Getting Started
 ### Prerequistes

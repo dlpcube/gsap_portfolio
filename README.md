@@ -13,9 +13,7 @@ Next.JS,
 - node.js 18+
 - npm / yarn
 ### Installation
-### Windows
-### Mac
-### Linux
+### Windows / Mac / Linux
 ```bash
 git clone https://github.com/dlpcube/gsap_portfolio
 cd gsap_portfolio

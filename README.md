@@ -11,7 +11,7 @@
 - Multiple z-index's for gallery effect
 
 ## Getting Started
-### Prerequistes
+### Prerequisites
 - node.js 18+
 - npm / yarn
 - git
@@ -25,7 +25,9 @@ npm run main
 ```
 
 ## Roadmap
-
+- [] Implement portfolio gallery section
+- [] Add Contact Section
+- [] Add bio animation
 ## License
 
 MIT License. See [LICENSE](./LICENSE)

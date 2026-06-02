@@ -16,6 +16,12 @@ Next.JS,
 ### Windows
 ### Mac
 ### Linux
+```bash
+git clone https://github.com/dlpcube/gsap_portfolio
+cd gsap_portfolio
+npm install
+npm run main
+```
 
 
 # Installation and Build Instructions

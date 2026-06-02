@@ -1,16 +1,18 @@
 # gsap_portfolio
-A gsap based portfolio made in Next.JS.
+> A gsap based portfolio made in Next.js, React, Tailwind CSS, and GSAP.
+[Demo](https://dlprd.com)
 
-# Preview
--- screenshot --
+![preview gif/screenshot]
 
-# Built with
-Next.JS, React, Tailwind CSS, and GSAP.
+## Features
+Next.JS, 
 
-# Getting Started
-## Windows
-## Mac
-## Linux
+## Getting Started
+### Prerequistes
+### Installation
+### Windows
+### Mac
+### Linux
 
 
 # Installation and Build Instructions
@@ -18,3 +20,5 @@ Next.JS, React, Tailwind CSS, and GSAP.
 # Usage
 
 # Roadmap
+
+## License

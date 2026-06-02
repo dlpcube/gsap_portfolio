@@ -23,9 +23,6 @@ npm install
 npm run main
 ```
 
-
-# Installation and Build Instructions
-
 # Usage
 
 # Roadmap

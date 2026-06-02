@@ -10,6 +10,8 @@ Next.JS,
 
 ## Getting Started
 ### Prerequistes
+- node.js 18+
+- npm / yarn
 ### Installation
 ### Windows
 ### Mac

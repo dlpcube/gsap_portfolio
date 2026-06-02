@@ -14,6 +14,7 @@
 ### Prerequistes
 - node.js 18+
 - npm / yarn
+- git
 ### Installation
 #### Windows / Mac / Linux
 ```bash

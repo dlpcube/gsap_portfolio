@@ -40,5 +40,3 @@ npm run main
 ## License
 
 MIT License. See [LICENSE](./LICENSE)
-
-> > > > > > > 599086bc0bae4f4a9665b1acca2a9a662f73e8f3

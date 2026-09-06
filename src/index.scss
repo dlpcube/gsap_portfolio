@@ -1,0 +1,77 @@
+// Initial and global settings for the html, body, and variables.
+
+:root {
+  /*--color-primary: #6741d9;
+  --color-primary-light: #7950f2;
+  --color-text: #dee2e6;
+  --color-text-dark: #adb5bd;
+  --color-background-100: #343a40;
+  --color-background-500: #2b3035;
+  --color-background-900: #212529;
+  --color-red: #fa5252;
+  --color-red-dark: #e03131;*/
+
+  /*Primary*/
+  --color-primary: #d32121;
+  --color-primary-50: oklch(97.053% 0.01292 16.91);
+  --color-primary-100: oklch(93.56% 0.0309 17.72);
+  --color-primary-200: oklch(88.45% 0.0593 18.33);
+  --color-primary-300: oklch(80.77% 0.1035 19.57);
+  --color-primary-400: oklch(71.05% 0.1685 22.31);
+  --color-primary-500: oklch(63.74% 0.2098 25.44);
+  --color-primary-600: oklch(55.73% 0.2105 27.55);
+  --color-primary-700: oklch(50.67% 0.192 27.62);
+  --color-primary-800: oklch(44.48% 0.1631 27.04);
+  --color-primary-900: oklch(39.58% 0.1331 25.72);
+  --color-primary-950: oklch(25.75% 0.0886 26.04);
+
+  /*Neutrals*/
+  --color-neutral-50: oklch(98.51% 0 0);
+  --color-neutral-100: oklch(97.02% 0 0);
+  --color-neutral-200: oklch(92.49% 0 0);
+  --color-neutral-300: oklch(86.69% 0 0);
+  --color-neutral-400: oklch(69.93% 0 0);
+  --color-neutral-500: oklch(55.21% 0 0);
+  --color-neutral-600: oklch(44.23% 0 0);
+  --color-neutral-700: oklch(37.15% 0 0);
+  --color-neutral-800: oklch(27.27% 0 0);
+  --color-neutral-900: oklch(21.78% 0 0);
+  --color-neutral-950: oklch(14.96% 0 0);
+
+  /* SCSS HEX */
+  /*
+  $powder-petal: #e8d6cbff;
+  $cotton-rose: #d0ada7ff;
+  $terracotta-clay: #ad6a6cff;
+  $blackberry-cream: #5d2e46ff;
+  $amethyst-smoke: #b58db6ff;
+*/
+  /* CSS HEX */
+  --powder-petal: #e8d6cbff;
+  --cotton-rose: #d0ada7ff;
+  --terracotta-clay: #ad6a6cff;
+  --blackberry-cream: #5d2e46ff;
+  --amethyst-smoke: #b58db6ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 90.5%;
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  color: var(--color-text);
+  background-color: var(--color-neutral-100);
+  padding: 1.4rem;
+  // gap: 2rem;
+}

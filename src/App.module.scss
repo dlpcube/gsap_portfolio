@@ -1,0 +1,699 @@
+// Color Theory Notes
+
+/*
+
+Neutral foundations:
+1. Background
+
+For landing page, 3-5 neutrals works great.
+For product design, you want 4 layers of backgrounds, at least one/two strokes, and about 3 text variants  
+
+Good reason to not have pure white as your backgrounds, other elements can be white to pop
+
+Use 85% to define the edge but not overpower it
+
+The more important a button is the darker it is
+
+Most multi purpose buttons sit between 90% - 95% white
+
+
+Text:
+
+Darkest colors are reserved for important headings ~ 11% white.
+
+Majority of text should between 15 - 20% white and subtext 30 - 40%
+
+
+Layer 2: Functional Accent
+
+ Think of color as a scale. From lightest version to darekst version. 
+
+ 500 or 600 for your main color, but a hover would setp up to a 700 and a link might be a 400 or 500.
+
+ To generate a pallete use UI colors to generate a ramp from the primary color hex code
+
+ Website: https://uicolors.app/generate
+
+ Dark Mode:
+ Dark colors look more similar so they require more distance to look as different as lighter colors.
+ Double the distance for dark colors
+
+ Most of the white colors have distance from 1-3%
+
+ For Dark mode: 4-6% distance
+
+ For primary color on dark mode, select a 300 or 400 as primary brand color
+
+ Hover: 400-500
+
+ Dim text and brighten any borders    
+
+ Surfaces always get lighter as they elevate
+
+ Any raised cards need to have a lighter color or just a border like a search bar.
+
+Layer 3: Semantic Communicatio
+     Charts:
+     Neutral color charts are not right.
+     Using brand color ramps makes it look too similar
+     
+     Some way to get the same tone of color across the entire spectrum.
+
+     Solution: OKLCH pallete, which depends on human perception of color. 
+     Same perceived brightness across different colors
+
+     Go to oklch.com
+
+     Set lightness and chroma. Incrament the hue by about 25 to 30 and that works for the chart.
+Layer 4: Themeing engine:
+    
+    oklch
+    For every neutral you have, plug in the hex value and drop the lightness by 0.03 and increase the chroma by 0.02
+    Next adjust the hue to get any themed output. 
+
+
+
+****
+
+Creating a UI color palette:
+
+3 Category of Colors:
+
+1. Brand Colors
+2. Supporting Colors
+3. Neutrals
+
+1-2 brand colors from the business e.g facebook blue
+
+Use brand colors on:
+1. Buttons
+2. Links
+3. Navigation tabs
+4. Icons
+
+Supporting Colors: used throughout the interface in key places where you need to draw attention or communicate something to the user e.g error messages, information dialouges, confirmation.
+
+Most of the app is going to be made from the neutral cateogry some form of grey:
+
+- Text
+- Backgrounds
+- border colors
+- secondary buttons
+
+Process to build a color pallete for three cateogries
+
+1. Pick a starting point ( brand color )
+    - Good middle color that lighter and darker shades will be based on 
+    ***** 
+    RULES OF THUMB
+    Going to usually be in the upper right corner of the color picker
+    Usually a shade that would work well as a button background
+    ***
+    GOOD SITES
+    humint.com
+    colorhunt.co
+
+    **** 
+    When making a color pallete use hsb which stands for hue(1-365), saturation(0-100, how intense the color is on a scale), brightness(0-100, how black or white is added to the color)
+
+2. Pick supporting Colors
+    Colors that are used in the interface to draw attention or communicate something to the user.
+
+    1. Green: Confirmations or positive messages
+    2. Orange: Warnings
+    3. Red: Dangerous situations or errors
+    4. Blue: Neutral informational messages
+
+    ****
+    Supporting colors need to compliment brand color
+    e.g If brand color is really saturated and supporting colors are desaturated something will be off   
+
+    To avoid this, pay attention to HSB numbers, make sure saturation and brightness stay close to your base color
+
+    Keep within 5-10 away and just adjust the hue.
+
+3. Make all the shades
+    5-10 shades for all colors
+    Website: https://uicolors.app/generate
+
+4. Create Neutrals
+     Pick a middles gray
+     Follow the arc process to create the scale
+
+     Follow arc from top left corner to bottom right corner 
+     e.g #535353 as middle gray
+
+
+5. Test them out and make tweaks
+
+    Put all the shades together and squint eyes to make sure each scale has the same range going from light to dark
+
+    If line is not horizontal across the shades try to adjust saturation 
+
+    Stick between 5-10 shades per color
+
+
+    hicks law: number of visual stimuli increases the amount of time it takes to process information and make decisions
+
+    law of proximity: things that are close together our brain can associate better and process better 
+*/
+
+/*
+******
+
+Primary Color: Middle red
+
+*/
+
+a,
+a:visited {
+  color: inherit; // Inherits text color from parent elements
+}
+
+.container {
+  gap: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+
+  gap: 0.8rem;
+  & span {
+    font-size: 2.2rem;
+  }
+
+  & h1 {
+    // color: var(--terracotta-clay);
+    // color: #d32121;
+    color: var(--color-primary-500);
+    font-weight: 600;
+  }
+}
+
+.nav_bar {
+  display: flex;
+  //   grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  height: 4.95rem;
+  padding: 0 3.2rem;
+  background-color: var(--color-neutral-100);
+  border-radius: 0.2rem;
+  width: 100%;
+  box-shadow: 0 2.4rem 2.4rem rgba(0, 0, 0, 0.1);
+}
+.sandwich {
+  //   justify-self: end;
+  //   height: auto;
+  //   width: auto;
+  color: var(--color-primary-400);
+  & h2 {
+  }
+  //   height: 1rem;
+  //   width: 1rem;
+}
+.tabs {
+  & li:hover {
+    background-color: var(--color-neutral-200);
+    color: var(--color-primary-500);
+  }
+
+  & li {
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--color-primary-400);
+    font-size: 1.7rem;
+    text-transform: lowercase;
+    border-bottom: 1px solid var(--color-primary-500);
+    border-radius: 0.2rem;
+  }
+  //   justify-self:;
+
+  margin-left: auto;
+  // Gap between tabs and sandwich
+  margin-right: 4rem;
+
+  padding: 0 1rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.7rem;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  align-items: center;
+}
+
+.about {
+  width: 55%;
+  transform: skewX(8deg);
+
+  // display: flex;
+  // flex-direction: row;
+  & h2 {
+    color: var(--color-primary-500);
+  }
+  & p {
+    // width: 50%;
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    color: var(--color-neutral-600);
+    font-weight: 400;
+    // font-weight: 300;
+  }
+  &_image {
+    width: 58%;
+    transform: skewX(8deg);
+
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    & img {
+      width: 58%;
+      // height: auto;
+      object-fit: cover;
+      box-shadow: -2rem 2rem 1rem rgba(#000, 0.13);
+    }
+  }
+}
+
+.title_container {
+  width: 75%;
+  height: 30rem;
+  margin: 0 auto;
+  // padding: 0 2vh 0 2vh;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-neutral-200);
+  gap: 1vw;
+  border-radius: 4.4rem;
+}
+
+.title {
+  //   width: 75%;
+  position: relative;
+  // padding: 1rem 0 1rem 1rem;
+  // margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  & h1 {
+    // margin-left: auto;
+    color: var(--color-primary-500);
+    font-weight: 1;
+    font-size: 6vh;
+    display: inline-block;
+  }
+
+  &_letter_container {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+
+  &_cursor {
+    display: inline-block;
+    position: absolute;
+    top: 0; /* Reset to top-left boundary of .title container */
+    left: 0;
+    // color: var(--color-primary-500);
+    // font-family: monospace;
+    pointer-events: none;
+    will-change: transform;
+  }
+  &_letter {
+    display: inline-block;
+    white-space: pre;
+    will-change: transform;
+  }
+
+  /*
+  & span {
+    display: inline-block; /*YOU HAVE TO ADD THIS LINE TO MAKE THE GSAP WORK. SPANS ARE INLINE ELEMENTS BY DEFAULT AND THE BROWSER IGNORES GSAPS ATTEMPT TO ROTATE BY DEFAULT 
+    white-space: pre; /* Prevents space characters from collapsing into zero-width 
+  } 
+    */
+
+  text-transform: lowercase;
+  //   padding: 10rem 10rem;
+  //   width: 30rem;
+  //   height: 30rem;
+
+  font-size: 1.4rem;
+  //   color: #fff;
+}
+
+.images {
+  // align-items: center;
+  // justify-content: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: flex-start;
+  position: relative;
+  margin-top: 2vh;
+  margin-left: 5vh;
+  // margin-left: 5vh;
+  width: 40%;
+
+  .imageContainer {
+    position: absolute;
+    width: 250px;
+
+    // transform: translateX(24vh); // padding-left: 20px;
+    // height: 4rem;
+    // width: 4rem;
+    & img {
+      object-fit: cover;
+      height: auto; /// MAKE SURE TO INCLUDE THIS LINE!!!
+      display: block;
+      width: 100%; //// MAKE SURE TO INCLUDE THIS LINE!!
+      box-shadow: -2rem 2rem 1rem rgba(#000, 0.13);
+      transition:
+        transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        z-index 0s;
+    }
+    &:not(:last-child):hover img {
+      transform: translateX(-10vw) scale(1.1);
+    }
+    &:last-child:hover img {
+      transform: scale(1.1);
+    }
+
+    &:nth-of-type(1) {
+      // height: 30vh;
+      width: 29vh;
+      z-index: 1;
+      left: 3.2vw;
+    }
+    &:nth-of-type(2) {
+      left: 3vw;
+      top: 1.5vh;
+      // height: 40vh;
+      width: 35vh;
+      z-index: 2;
+    }
+    &:nth-of-type(3) {
+      left: 6vw;
+      top: 3vh;
+      // height: 25vh;
+      width: 25vh;
+      z-index: 3;
+    }
+    &:nth-of-type(4) {
+      left: 9vw;
+      top: 4.5vh;
+      height: 25vh;
+      width: 25vh;
+      z-index: 4;
+    }
+  }
+}
+
+.portfolio_list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+
+/*
+***** CONTACT SECTION
+*/
+
+.section_contact {
+  //   position: relative;
+  width: 80%;
+  height: 65vh;
+  // background-color: var(--color-primary-400);
+  background-image: linear-gradient(
+    45deg,
+    var(--color-primary-400),
+    var(--color-primary-500)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 5rem;
+  //   padding: 0rem 10rem 0rem 10rem;
+  overflow: hidden;
+}
+
+.contact {
+  //   position: absolute;
+  background-color: var(--color-neutral-50);
+  //   width: 10rem;
+  //   padding: 10rem 0rem 10rem 0rem;
+  height: 50vh;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  //   flex-direction: column;
+  //   justify-content: left;
+  //   gap: 4rem;
+  //   align-items: center;
+  &_social_container {
+    flex: 0 0 50%;
+    // justify-content: center;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: left;
+  }
+
+  &_form_heading2 {
+    align-items: left;
+    justify-content: left;
+    padding: 0 4rem;
+    & h1 {
+      font-size: 4rem;
+      font-weight: 100;
+    }
+  }
+
+  &_social_container_icons {
+    flex: 1;
+    // flex: 0 0 50%;
+    justify-content: center;
+    display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding: 0 5rem;
+    height: 100%;
+
+    &_container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    &_group {
+      display: flex;
+      //   flex: 0 0 50%;
+      gap: 20rem;
+      & h2 {
+        font-size: 2rem;
+      }
+    }
+  }
+  &_list {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+.form {
+  flex: 0 0 50%;
+  background-color: var(--color-neutral-50);
+  width: 50%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  &_inputs {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    gap: 2rem;
+  }
+
+  &_group {
+    position: relative;
+    &_label_begin {
+      position: absolute;
+      top: 45px;
+      left: 20px;
+      visibility: hidden;
+      opacity: 0;
+    }
+    &_label_end {
+      position: absolute;
+      top: 4.5rem;
+      left: 20px;
+      opacity: 1;
+    }
+
+    &_label_end_textarea {
+      position: absolute;
+      top: 100%;
+      //   bottom: 0;
+      left: 20px;
+      opacity: 1;
+    }
+
+    &_label {
+      transition: all 0.3s ease-in-out;
+      //   opacity: 0;
+    }
+    & input {
+      outline: none;
+      border-radius: 6px;
+      border: 1px solid var(--color-neutral-100);
+      color: var(--color-neutral-400);
+      //   font-size: 4rem;
+      //   height: 1.5rem;
+      padding: 1.5rem 1.5rem;
+      box-shadow: 0 2rem 3rem rgba(#000, 0.13);
+      transition: all 0.3s;
+      border-bottom: 3px solid transparent;
+      display: block;
+
+      &:focus {
+        border-bottom: 3px solid #55c57a;
+      }
+
+      &:focus:invalid {
+        border-bottom: 3px solid var(--color-primary-300);
+      }
+    }
+    & textarea {
+      outline: none;
+      border-radius: 6px;
+      border: 1px solid var(--color-neutral-100);
+      color: var(--color-neutral-400);
+      //   font-size: 4rem;
+      height: 7rem;
+
+      box-shadow: 0 2rem 3rem rgba(#000, 0.13);
+      transition: all 0.3s;
+      border-bottom: 3px solid transparent;
+      display: block;
+      padding: 1.5rem 1.5rem;
+
+      &:focus {
+        border-bottom: 3px solid #55c57a;
+      }
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    // width: 100%;
+  }
+}
+
+.card {
+  gap: 12vw;
+  width: 80%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba(#000, 0.1);
+  background-color: var(--color-neutral-100);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: 1rem;
+  transform: skewX(-8deg);
+  display: flex;
+  justify-content: center;
+}
+
+.footer_gridContainer {
+  // margin: 0 auto; /*top right bottom left*/
+  padding: 2vw 1vw 2vw 3vw;
+  background-color: var(--color-neutral-500);
+  width: 100%;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 30px) 20rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  // grid-row-gap: 5;
+  grid-column-gap: 2.5rem;
+  grid-row-gap: 1rem;
+
+  /*Grid Children*/
+  &_logo {
+    & span {
+      font-size: 2.2rem;
+    }
+    display: flex;
+    grid-row: 1 / 2;
+    grid-column: 1 / span 5;
+    // align-self: center;
+    & h3 {
+      align-self: center;
+    }
+    justify-self: start;
+    gap: 1rem;
+  }
+  &_paragraph {
+    grid-row: 2 / 4;
+    grid-column: 1 / span 5;
+    align-self: center;
+    justify-self: center;
+  }
+  &_socialIcon1 {
+    grid-row: 4 / 5;
+    grid-column: 1 / span 1;
+  }
+  &_socialIcon2 {
+    grid-row: 4 / 5;
+    grid-column: 2 / span 1;
+  }
+  &_socialIcon3 {
+    grid-row: 4 / 5;
+    grid-column: 3 / span 1;
+  }
+  &_socialIcon4 {
+    grid-row: 4 / 5;
+    grid-column: 4 / span 1;
+  }
+  &_button {
+    grid-row: 5 / 6;
+    grid-column: 1 / 5;
+  }
+  &_empty {
+    grid-column: 5 / span 2;
+    grid-row: 1 / -1;
+  }
+  &_head1 {
+    grid-column: 7 / 10;
+    grid-row: 1 / 2;
+  }
+  &_list1 {
+    list-style: none;
+    grid-row: 2 / 4;
+    grid-column: 7 / 8;
+  }
+  &_list2 {
+    list-style: none;
+    grid-row: 2 / 4;
+    grid-column: 9 / 10;
+  }
+}

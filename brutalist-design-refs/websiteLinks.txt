@@ -1,0 +1,43 @@
+https://www.bloomberg.com
+https://www.outthere.studio/
+https://history.jailhouselawyers.org/
+https://www.deckdocs.com/
+
+
+KEY INSPIRATION: https://editstudio.agency/
+
+
+Desc: overlaps mostly static text on solid-colored backgrounds with a fashion portfolio stacked in a vertical grid 
+and videos that auto-play on loading. The sticky navigation bar is undecorated and stays as plain, sans serif text 
+across the top of the page. Typography is large and overlaps with photos and other visuals. Names and features are 
+inconsistently capitalized.
+
+The site’s grid layout lets users scan dozens of projects quickly without wading through paragraphs. 
+This example of brutalist design puts fashion imagery first, letting the portfolio projects do the talking.
+
+
+
+For reference list: https://webflow.com/blog/10-brutalist-websites
+
+Key elements of brutalist websites:
+
+1. Asymmetrical layouts
+2. Bold typography
+3. Fonts: 
+
+    1. Times New Roman: https://wearenotsisters.com/
+    2. Harbour: https://krass.com.au/
+    3. Larish Neue: http://andnone.co/
+    4. Hawthorn: http://www.twinpickles.co/
+    5. GT America: http://sf.gabeferreira.com/
+    6. Venus: http://www.judithcowan.com/
+    7. Apoc: https://datalands.co/
+    8. Nimbus Sans: http://www.boombk.com/
+    9. Romana: http://www.kristineflat.land/
+    10. Eksell Display: https://theoutline.com/
+
+
+4. Minimal navigations.
+5. Text pushes against images.
+6. Media and text placements may overlap and aren't limited to boxes.
+7. Greyscale videos/photos

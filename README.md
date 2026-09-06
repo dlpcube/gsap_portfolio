@@ -1,16 +1,44 @@
-# React + Vite
+# gsap_portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A gsap based portfolio made in Next.js, React, Tailwind CSS, and GSAP.
 
-Currently, two official plugins are available:
+[Demo](https://dlprd.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![preview gif/screenshot]
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Parallax Effect with `scrolltrigger()`
+- Shapeshifting
+- Multiple z-index's for gallery effect
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- node.js 18+
+- npm / yarn
+- git
+
+### Installation
+
+#### Windows / Mac / Linux
+
+```bash
+git clone https://github.com/dlpcube/gsap_portfolio
+cd gsap_portfolio
+npm install
+npm run main
+```
+
+## Roadmap
+
+- [ ] Implement portfolio gallery section
+- [ ] Add Contact Section
+- [ ] Add bio animation
+
+## License
+
+MIT License. See [LICENSE](./LICENSE)
+
+> > > > > > > 599086bc0bae4f4a9665b1acca2a9a662f73e8f3

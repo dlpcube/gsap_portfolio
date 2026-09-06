@@ -25,6 +25,7 @@ Key elements of brutalist websites:
 2. Bold typography
 3. Fonts: 
 
+    0. List website: https://www.typewolf.com/top-10-brutalist-fonts
     1. Times New Roman: https://wearenotsisters.com/
     2. Harbour: https://krass.com.au/
     3. Larish Neue: http://andnone.co/

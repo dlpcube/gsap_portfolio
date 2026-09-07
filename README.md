@@ -22,13 +22,27 @@
 
 ### Installation
 
-#### Windows / Mac / Linux
+#### Windows / Mac / Linux: Starting a local development server
 
 ```bash
 git clone https://github.com/dlpcube/gsap_portfolio
 cd gsap_portfolio
 npm install
-npm run main
+npm run dev
+```
+
+### Building the program
+
+Run the following command to build the react application. This should populate the `dist` folder.
+
+```bash
+npm run build
+```
+
+Then, to run the built application, execute:
+
+```bash
+npm run preview
 ```
 
 ## Roadmap

@@ -260,15 +260,31 @@ a:visited {
   //   color: #fff;
 }
 
+$gap-size: 11vh;
+
 .rightCol {
   font-family: "Rubik", sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 3vh;
+  gap: $gap-size;
   align-items: stretch;
+  padding-right: 3vh;
+  margin-top: 10vh;
 
   & > :not(:last-child) {
-    border-bottom: 1px solid black;
+    position: relative;
+    // border-bottom: 1px solid black;
+  }
+
+  & > :not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: black;
+
+    bottom: calc($gap-size / -2);
   }
 
   &_child {
@@ -277,6 +293,10 @@ a:visited {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    & p {
+      text-align: center;
+    }
 
     & ul {
       list-style: none;

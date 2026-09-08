@@ -315,12 +315,30 @@ $gap-size: 11vh;
   // align-items: center;
 }
 
+$gap-size-main: 3vw;
+
 .main {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: $gap-size-main;
 
   align-items: center;
+
+  & > :not(:last-child) {
+    position: relative;
+    // border-bottom: 1px solid black;
+  }
+
+  & > :not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: black;
+
+    bottom: calc($gap-size-main / -2);
+  }
 }
 
 $gap-size-about: 5vw;
@@ -337,8 +355,9 @@ $gap-size-about: 5vw;
     &::after {
       content: "";
       position: absolute;
-      top: 0;
-      bottom: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 90vh; // or whatever length you want
       right: calc(#{$gap-size-about} / -2);
       width: 1px;
       background-color: black;

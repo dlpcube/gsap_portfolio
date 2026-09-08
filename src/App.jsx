@@ -292,7 +292,7 @@ function RightCol() {
 
 function About() {
   const paragraph1 =
-    "My name is Diego. I specialize in mathematics and computer science  at New York University.  I love learning about how to use math in combination with computer science to build unique algorithms to solve a myriad a problems or to gain more insight. For example, mathematical modeling to better understand physical phenomena.";
+    "My name is Diego. I specialize in mathematics and computer science  at New York University.  I love learning how to use math in combination with computer science to build unique algorithms to solve a myriad a problems or to gain more insight. For example, mathematical modeling to better understand physical phenomena.";
   const paragraph2 =
     "My hobbies include playing piano, digital sculpting, and drawing.";
 

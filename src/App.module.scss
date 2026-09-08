@@ -165,6 +165,10 @@ Primary Color: Middle red
 
 */
 
+.times-text {
+  font-family: "Times New Roman", Times, serif;
+}
+
 a,
 a:visited {
   color: inherit; // Inherits text color from parent elements
@@ -194,28 +198,6 @@ a:visited {
   }
 }
 
-.nav_bar {
-  display: flex;
-  //   grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  justify-content: center;
-  height: 4.95rem;
-  padding: 0 3.2rem;
-  background-color: var(--color-neutral-100);
-  border-radius: 0.2rem;
-  width: 100%;
-  box-shadow: 0 2.4rem 2.4rem rgba(0, 0, 0, 0.1);
-}
-.sandwich {
-  //   justify-self: end;
-  //   height: auto;
-  //   width: auto;
-  color: var(--color-primary-400);
-  & h2 {
-  }
-  //   height: 1rem;
-  //   width: 1rem;
-}
 .tabs {
   & li:hover {
     background-color: var(--color-neutral-200);
@@ -242,6 +224,71 @@ a:visited {
   display: flex;
   align-items: center;
   gap: 1.7rem;
+}
+
+.title_image_cont {
+  display: flex;
+  flex-direction: column;
+  // align-items: flex-start;
+  gap: 3vh;
+  border-right: 2px solid black; /* The black vertical line */
+  padding-right: 3vh; /* Optional: space before the line */
+  padding-left: 3vh;
+  // margin-right: 2vh;
+}
+
+.title {
+  font-family: "Times New Roman", Times, serif;
+
+  & h1 {
+    font-weight: 300;
+    font-size: 29vh;
+  }
+  /*
+  & span {
+    display: inline-block; /*YOU HAVE TO ADD THIS LINE TO MAKE THE GSAP WORK. SPANS ARE INLINE ELEMENTS BY DEFAULT AND THE BROWSER IGNORES GSAPS ATTEMPT TO ROTATE BY DEFAULT 
+    white-space: pre; /* Prevents space characters from collapsing into zero-width 
+  } 
+    */
+
+  text-transform: uppercase;
+  //   padding: 10rem 10rem;
+  //   width: 30rem;
+  //   height: 30rem;
+
+  font-size: 1.4rem;
+  //   color: #fff;
+}
+
+.rightCol {
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  align-items: stretch;
+
+  & > :not(:last-child) {
+    border-bottom: 1px solid black;
+  }
+
+  &_child {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & ul {
+      list-style: none;
+    }
+  }
+}
+
+.home {
+  display: flex;
+  gap: 1rem;
+
+  // align-items: center;
 }
 
 .main {
@@ -285,135 +332,50 @@ a:visited {
   }
 }
 
-.title_container {
-  width: 75%;
-  height: 30rem;
-  margin: 0 auto;
-  // padding: 0 2vh 0 2vh;
-  display: flex;
-  justify-content: center;
-  background-color: var(--color-neutral-200);
-  gap: 1vw;
-  border-radius: 4.4rem;
-}
-
-.title {
-  //   width: 75%;
+.imageContainer {
   position: relative;
-  // padding: 1rem 0 1rem 1rem;
-  // margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  & h1 {
-    // margin-left: auto;
-    color: var(--color-primary-500);
-    font-weight: 1;
-    font-size: 6vh;
-    display: inline-block;
-  }
 
-  &_letter_container {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: bottom;
-  }
-
-  &_cursor {
-    display: inline-block;
-    position: absolute;
-    top: 0; /* Reset to top-left boundary of .title container */
-    left: 0;
-    // color: var(--color-primary-500);
-    // font-family: monospace;
-    pointer-events: none;
-    will-change: transform;
-  }
-  &_letter {
-    display: inline-block;
-    white-space: pre;
-    will-change: transform;
-  }
-
-  /*
-  & span {
-    display: inline-block; /*YOU HAVE TO ADD THIS LINE TO MAKE THE GSAP WORK. SPANS ARE INLINE ELEMENTS BY DEFAULT AND THE BROWSER IGNORES GSAPS ATTEMPT TO ROTATE BY DEFAULT 
-    white-space: pre; /* Prevents space characters from collapsing into zero-width 
-  } 
-    */
-
-  text-transform: lowercase;
-  //   padding: 10rem 10rem;
-  //   width: 30rem;
-  //   height: 30rem;
-
-  font-size: 1.4rem;
-  //   color: #fff;
-}
-
-.images {
-  // align-items: center;
-  // justify-content: center;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: flex-start;
-  position: relative;
   margin-top: 2vh;
   margin-left: 5vh;
-  // margin-left: 5vh;
-  width: 40%;
 
-  .imageContainer {
+  width: 50vh;
+  height: 60vh;
+  // width: 100px;
+
+  // transform: translateX(24vh); // padding-left: 20px;
+  // height: 4rem;
+  // width: 4rem;
+  & img {
+    object-fit: cover;
+    height: auto; /// MAKE SURE TO INCLUDE THIS LINE!!!
+    display: block;
+    width: 40%; //// MAKE SURE TO INCLUDE THIS LINE!!
+    box-shadow: -2rem 2rem 1rem rgba(#000, 0.13);
+    transition:
+      transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+      z-index 0s;
+  }
+  &:not(:last-child):hover img {
+    transform: translateX(-10vw) scale(1.1);
+  }
+  &:last-child:hover img {
+    transform: scale(1.1);
+  }
+
+  & img:nth-of-type(1) {
     position: absolute;
-    width: 250px;
-
-    // transform: translateX(24vh); // padding-left: 20px;
-    // height: 4rem;
-    // width: 4rem;
-    & img {
-      object-fit: cover;
-      height: auto; /// MAKE SURE TO INCLUDE THIS LINE!!!
-      display: block;
-      width: 100%; //// MAKE SURE TO INCLUDE THIS LINE!!
-      box-shadow: -2rem 2rem 1rem rgba(#000, 0.13);
-      transition:
-        transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-        z-index 0s;
-    }
-    &:not(:last-child):hover img {
-      transform: translateX(-10vw) scale(1.1);
-    }
-    &:last-child:hover img {
-      transform: scale(1.1);
-    }
-
-    &:nth-of-type(1) {
-      // height: 30vh;
-      width: 29vh;
-      z-index: 1;
-      left: 3.2vw;
-    }
-    &:nth-of-type(2) {
-      left: 3vw;
-      top: 1.5vh;
-      // height: 40vh;
-      width: 35vh;
-      z-index: 2;
-    }
-    &:nth-of-type(3) {
-      left: 6vw;
-      top: 3vh;
-      // height: 25vh;
-      width: 25vh;
-      z-index: 3;
-    }
-    &:nth-of-type(4) {
-      left: 9vw;
-      top: 4.5vh;
-      height: 25vh;
-      width: 25vh;
-      z-index: 4;
-    }
+    height: auto;
+    width: 40vh;
+    z-index: 1;
+    left: 10vw;
+  }
+  & img:nth-of-type(2) {
+    position: absolute;
+    left: 38vw;
+    top: 12vh;
+    height: 40vh;
+    width: 40vh;
+    z-index: 2;
   }
 }
 

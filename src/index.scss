@@ -54,7 +54,9 @@
   --amethyst-smoke: #b58db6ff;
 }
 
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -71,7 +73,7 @@ body {
     Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
   color: var(--color-text);
-  background-color: var(--color-neutral-100);
-  padding: 1.4rem;
+  background-color: #fff;
+  // padding: 0;
   // gap: 2rem;
 }

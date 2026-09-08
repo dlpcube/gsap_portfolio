@@ -18,14 +18,8 @@ import FacebookIcon from "./assets/facebook.svg?react";
 import InstagramIcon from "./assets/instagram.svg?react";
 import EmailIcon from "./assets/email.svg?react";
 
-// import square1 from "./assets/square_headshot.jpg";
-import square2 from "./assets/square_headshot_2.jpg";
-// import square3 from "./assets/square_headshot_3.jpg";
-// import bodyBlazer from "./assets/body_blazer.jpg";
-import bodyGolf from "./assets/body_golf_blue.jpg";
-
-const image = bodyGolf;
-// images.reverse();
+import square2 from "./assets/square_headshot_2_gs.jpg";
+import bodySuitGs from "./assets/body_blazer_gs.jpg";
 
 const iconMap = {
   linkedin: LinkedinIcon,
@@ -56,15 +50,14 @@ function App() {
   // const container = useRef(null);
   return (
     <div className={styles.container}>
-      <NavBar>
-        <Name />
-        <Tabs />
-        <Sandwich />
-      </NavBar>
       <Main>
-        <Title />
+        <Home>
+          <Title />
+          <RightCol />
+        </Home>
         <About />
-        {/* <Portfolio /> */}
+        <CourseLoad />
+        <Projects />
         {/* <Resume /> */}
         <Contact />
         <Footer />
@@ -109,198 +102,189 @@ function Main({ children }) {
   return <main className={styles.main}>{children}</main>;
 }
 
+function Home({ children }) {
+  return <div className={styles.home}>{children}</div>;
+}
+
 function Title() {
   // const [finished, setFinished] = useState(false);
   const container = useRef(null);
   const image_container = useRef(null);
-  const sentence1 = "Crafting models.";
-  const sentence2 = "From grounded ideas.";
   const lettersRef = useRef([]);
   const lettersRef2 = useRef([]);
   const cursor = useRef(null);
   const imagesRef = useRef([]);
+  const title = "PORTFOLIO";
 
-  useGSAP(() => {
-    const target1 = lettersRef.current.filter(Boolean);
-    const target2 = lettersRef2.current.filter(Boolean);
-    const targets = [...target1, ...target2];
+  // useGSAP(() => {
+  //   const target1 = lettersRef.current.filter(Boolean);
+  //   const target2 = lettersRef2.current.filter(Boolean);
+  //   const targets = [...target1, ...target2];
 
-    const cursorEl = cursor.current;
+  //   const cursorEl = cursor.current;
 
-    const isAtTop = window.scrollY < 50;
-    let entrancetl;
+  //   const isAtTop = window.scrollY < 50;
+  //   let entrancetl;
 
-    gsap.set(cursorEl, {
-      autoAlpha: 0,
-    });
+  //   gsap.set(cursorEl, {
+  //     autoAlpha: 0,
+  //   });
 
-    gsap.set(targets, {
-      autoAlpha: 0,
-    });
+  //   gsap.set(targets, {
+  //     autoAlpha: 0,
+  //   });
 
-    function titleAnimation() {
-      gsap.set(cursorEl, { autoAlpha: 1 });
-      gsap.set(targets, { autoAlpha: 1 });
-      gsap.to(cursorEl, {
-        opacity: 0,
-        ease: "power3.inOut",
-        repeat: -1,
-        yoyo: true,
-        duration: 0.5,
-      });
+  //   function titleAnimation() {
+  //     gsap.set(cursorEl, { autoAlpha: 1 });
+  //     gsap.set(targets, { autoAlpha: 1 });
+  //     gsap.to(cursorEl, {
+  //       opacity: 0,
+  //       ease: "power3.inOut",
+  //       repeat: -1,
+  //       yoyo: true,
+  //       duration: 0.5,
+  //     });
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  //     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // 2. Set the initial position to BOTH the starting X and starting Y of the first letter
-      const firstWrapper = targets[0].parentElement;
-      gsap.set(cursorEl, {
-        x: firstWrapper.offsetLeft,
-        y: firstWrapper.offsetTop,
-      });
+  //     // 2. Set the initial position to BOTH the starting X and starting Y of the first letter
+  //     const firstWrapper = targets[0].parentElement;
+  //     gsap.set(cursorEl, {
+  //       x: firstWrapper.offsetLeft,
+  //       y: firstWrapper.offsetTop,
+  //     });
 
-      targets.forEach((letter, index) => {
-        const wrapper = letter.parentElement;
+  //     targets.forEach((letter, index) => {
+  //       const wrapper = letter.parentElement;
 
-        // Calculate coordinates relative to the parent .title box
-        const targetX = wrapper.offsetLeft + wrapper.offsetWidth;
-        const targetY = wrapper.offsetTop + 10; // 👈 GRAB THE DYNAMIC HEIGHT OF THE CURRENT LINE
+  //       // Calculate coordinates relative to the parent .title box
+  //       const targetX = wrapper.offsetLeft + wrapper.offsetWidth;
+  //       const targetY = wrapper.offsetTop + 10; // 👈 GRAB THE DYNAMIC HEIGHT OF THE CURRENT LINE
 
-        tl.from(
-          letter,
-          {
-            autoAlpha: 0,
-            // duration: 0.125,
-            duration: 0.04,
-            // ease: Power3.easeOut,
-            // stagger: 1,
-          },
-          index * 0.125,
-        ).to(
-          cursorEl,
-          {
-            x: targetX,
-            y: targetY, // 👈 ANIMATE COORDS ALONG BOTH AXES SIMULTANEOUSLY!
-            duration: 0.11,
-            ease: "power1.inOut",
-          },
-          index * 0.125,
-        );
-      });
-    }
+  //       tl.from(
+  //         letter,
+  //         {
+  //           autoAlpha: 0,
+  //           // duration: 0.125,
+  //           duration: 0.04,
+  //           // ease: Power3.easeOut,
+  //           // stagger: 1,
+  //         },
+  //         index * 0.125,
+  //       ).to(
+  //         cursorEl,
+  //         {
+  //           x: targetX,
+  //           y: targetY, // 👈 ANIMATE COORDS ALONG BOTH AXES SIMULTANEOUSLY!
+  //           duration: 0.11,
+  //           ease: "power1.inOut",
+  //         },
+  //         index * 0.125,
+  //       );
+  //     });
+  //   }
 
-    function createParallaxTimeline() {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: image_container.current,
-          // start: "top 120px",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          // markers: true,
-          // onEnter: () => entrancetl.progress(1), // MIGHT BE CAUSING LAG
-          // onLeaveBack: () => mastertl.progress(0),
-        },
-      });
-      tl.to(
-        imagesRef.current[0],
-        {
-          y: -50,
-          x: 140,
-          autoAlpha: 0,
-          // display: "none",
-          immediateRender: false,
-          // duration: 1,
-        },
-        0,
-      );
-    }
+  //   function createParallaxTimeline() {
+  //     const tl = gsap.timeline({
+  //       scrollTrigger: {
+  //         trigger: image_container.current,
+  //         // start: "top 120px",
+  //         start: "top top",
+  //         end: "bottom top",
+  //         scrub: true,
+  //         // markers: true,
+  //         // onEnter: () => entrancetl.progress(1), // MIGHT BE CAUSING LAG
+  //         // onLeaveBack: () => mastertl.progress(0),
+  //       },
+  //     });
+  //     tl.to(
+  //       imagesRef.current[0],
+  //       {
+  //         y: -50,
+  //         x: 140,
+  //         autoAlpha: 0,
+  //         // display: "none",
+  //         immediateRender: false,
+  //         // duration: 1,
+  //       },
+  //       0,
+  //     );
+  //   }
 
-    if (!isAtTop) {
-      gsap.set(imagesRef.current, { autoAlpha: 1 });
-      titleAnimation();
-      createParallaxTimeline();
+  //   if (!isAtTop) {
+  //     gsap.set(imagesRef.current, { autoAlpha: 1 });
+  //     titleAnimation();
+  //     createParallaxTimeline();
 
-      return;
-    }
+  //     return;
+  //   }
 
-    lenis.stop();
-    document.documentElement.style.overflow = "hidden";
-    // Declaring timeline
-    entrancetl = gsap.timeline({
-      onComplete: () => {
-        document.documentElement.style.overflow = "";
-        lenis.start();
-        titleAnimation();
-        createParallaxTimeline();
-      },
-    });
+  //   lenis.stop();
+  //   document.documentElement.style.overflow = "hidden";
+  //   // Declaring timeline
+  //   entrancetl = gsap.timeline({
+  //     onComplete: () => {
+  //       document.documentElement.style.overflow = "";
+  //       lenis.start();
+  //       titleAnimation();
+  //       createParallaxTimeline();
+  //     },
+  //   });
 
-    entrancetl.from(imagesRef.current, {
-      autoAlpha: 0,
-      duration: 0.7,
-      stagger: 0.5,
-      ease: Power3.easeInOut,
-      overwrite: "auto",
-    });
-  }, []);
+  //   entrancetl.from(imagesRef.current, {
+  //     autoAlpha: 0,
+  //     duration: 0.7,
+  //     stagger: 0.5,
+  //     ease: Power3.easeInOut,
+  //     overwrite: "auto",
+  //   });
+  // }, []);
 
   return (
-    <div className={styles.title_container}>
-      <div className={styles.images} ref={image_container}>
-        <div
-          ref={(el) => (imagesRef.current[0] = el)}
-          className={styles.imageContainer}
-        >
-          <img src={image} width="800" height="600" alt="image" fill></img>
-        </div>
+    <div className={styles.title_image_cont}>
+      <div className={styles.title}>
+        <h1>{title}</h1>
       </div>
-      <div className={styles.title} ref={container}>
-        <h1>
-          {sentence1.split("").map((letter, index) => {
-            return (
-              <span
-                key={`l1_${index}`}
-                className={styles.title_letter_container}
+      <Images />
+    </div>
+  );
+}
 
-                // call back function is a function inside of another function.
-                // functions usually DO something
-              >
-                <span
-                  ref={(el) => (lettersRef.current[index] = el)}
-                  className={styles.title_letter}
-                >
-                  {letter}
-                </span>
-              </span>
-            );
-          })}
-          <span ref={cursor} className={styles.title_cursor}>
-            _
-          </span>
-        </h1>
+function Images() {
+  return (
+    <div className={styles.imageContainer}>
+      <img src={bodySuitGs} alt="Body Blazar" />
+      <img src={square2} alt="Portrait" />
+    </div>
+  );
+}
 
-        <h1>
-          {sentence2.split("").map((letter, index) => {
-            return (
-              <span
-                key={`l1_${index}`}
-                className={styles.title_letter_container}
-
-                // call back function is a function inside of another function.
-                // functions usually DO something
-              >
-                <span
-                  ref={(el) => (lettersRef2.current[index] = el)}
-                  className={styles.title_letter}
-                >
-                  {letter}
-                </span>
-              </span>
-            );
-          })}
-          {/* <span useRef={cursor}>_</span> */}
-        </h1>
-        {/* From <em>grounded</em> ideas. */}
+function RightCol() {
+  return (
+    <div className={styles.rightCol}>
+      <div className={styles.rightCol_child}>
+        <ul>
+          <li>About</li>
+          <li>Portfolio</li>
+          <li>Work</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+      <div className={styles.rightCol_child}>
+        <h3>Diego</h3>
+        <p>Comp sci + math major @ NYU interested in machine learning</p>
+      </div>
+      <div className={styles.rightCol_child}>
+        <h2>1</h2>
+        <p>COURSE LOAD THIS SEMESTER</p>
+      </div>
+      <div className={styles.rightCol_child}>
+        <h2>2</h2>
+        <p>magneticfield-gl</p>
+      </div>
+      <div className={styles.rightCol_child}>
+        <h2>3</h2>
+        <p>ASK A QUESTION</p>
       </div>
     </div>
   );
@@ -308,16 +292,15 @@ function Title() {
 
 function About() {
   const paragraph1 =
-    "I am a 21 year old who loves learning about technology, and thus, I am specialzing in mathematics and computer science at New York University.";
+    "My name is Diego. I specialize in mathematics and computer science  at New York University.  I love learning about how to use math in combination with computer science to build unique algorithms to solve a myriad a problems or to gain more insight. For example, mathematical modeling to better understand physical phenomena.";
   const paragraph2 =
-    "I enjoy learning about many things and have learned many programming languages due to this desire. Additionally, my interest in math began as an internal curiosity and an understanding of the advantage it would give me to create better algorithms, from finance, SaaS, machine learning, and market prediction.";
+    "My hobbies include playing piano, digital sculpting, and drawing.";
 
   return (
     <section>
       <div className={styles.row}>
         <div className={styles.card}>
           <div className={styles.about}>
-            <h2>My name is Diego!</h2>
             <p>{paragraph1}</p>
             <p>{paragraph2}</p>
           </div>
@@ -330,7 +313,15 @@ function About() {
   );
 }
 
-function Portfolio() {
+function CourseLoad() {
+  return (
+    <div>
+      <h3>COURSE LOAD</h3>
+    </div>
+  );
+}
+
+function Projects() {
   return (
     <div className={styles.portfolio}>
       <h3>Check out my projects!</h3>

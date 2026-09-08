@@ -297,17 +297,13 @@ function About() {
     "My hobbies include playing piano, digital sculpting, and drawing.";
 
   return (
-    <section>
-      <div className={styles.row}>
-        <div className={styles.card}>
-          <div className={styles.about}>
-            <p>{paragraph1}</p>
-            <p>{paragraph2}</p>
-          </div>
-          <div className={styles.about_image}>
-            <img src={square2} alt="Diego De La Paz Ruiz" />
-          </div>
-        </div>
+    <section className={styles.about}>
+      <div className={styles.about_title}>
+        <h1>ABOUT</h1>
+      </div>
+      <div className={styles.about_paragraphs}>
+        <p>{paragraph1}</p>
+        <p>{paragraph2}</p>
       </div>
     </section>
   );

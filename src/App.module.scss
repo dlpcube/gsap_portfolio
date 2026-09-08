@@ -357,7 +357,7 @@ $gap-size-about: 5vw;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      height: 90vh; // or whatever length you want
+      height: 90vh;
       right: calc(#{$gap-size-about} / -2);
       width: 1px;
       background-color: black;

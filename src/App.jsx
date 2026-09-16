@@ -21,6 +21,9 @@ import EmailIcon from "./assets/email.svg?react";
 import square2 from "./assets/square_headshot_2_gs.jpg";
 import bodySuitGs from "./assets/body_blazer_gs.jpg";
 
+import magImg1 from "./assets/magneticfield-gl-img 1.jpg";
+import magImg2 from "./assets/magneticfield-gl-img 2.jpg";
+
 const iconMap = {
   linkedin: LinkedinIcon,
   facebook: FacebookIcon,
@@ -48,6 +51,15 @@ function App() {
   }, []);
 
   // const container = useRef(null);
+  const stackArrayNames1 = [
+    "C++",
+    "OpenGL API",
+    "Graphic Shaders",
+    "Linear Algebra",
+    "CMake",
+  ];
+  const imagesMag = [magImg1, magImg2];
+  const imagesGSP = [];
   return (
     <div className={styles.container}>
       <Main>
@@ -56,8 +68,35 @@ function App() {
           <RightCol />
         </Home>
         <About />
-        <CourseLoad />
-        <Projects />
+        <CourseLoad>
+          <Course
+            courseName="Test"
+            courseDescription="This is a really long paragraph"
+          />
+        </CourseLoad>
+        <Projects>
+          {/* Let images be an array of images */}
+          {/* Let stackArrayNames be an array of strings with each string being the name of a tool. */}
+          <Project
+            projectDescription="A magnetic field type of thing"
+            projectTitle="magneticfield-gl"
+            images={imagesMag}
+            stackArrayNames={stackArrayNames1}
+          />
+          <Project
+            projectDescription="A gsap based portfolio made in Next.js, React, SCSS, and GSAP"
+            projectTitle="gsap-portfolio"
+            images={imagesGSP}
+            stackArrayNames={[
+              "React",
+              "Next.JS",
+              "GSAP library",
+              "SCSS",
+              "HTML",
+              "JavaScript",
+            ]}
+          />
+        </Projects>
         {/* <Resume /> */}
         <Contact />
         <Footer />
@@ -309,25 +348,61 @@ function About() {
   );
 }
 
-function CourseLoad() {
+function CourseLoad({ children }) {
   return (
-    <div>
-      <h3>COURSE LOAD</h3>
+    <section className={styles.courseLoad}>
+      <h2>COURSE LOAD</h2>
+      {children}
+    </section>
+  );
+}
+
+function Course({ courseName, courseDescription }) {
+  return (
+    <div className={styles.courseLoad_course}>
+      <h2>{courseName}</h2>
+      <p>{courseDescription}</p>
     </div>
   );
 }
 
-function Projects() {
+function Projects({ children }) {
   return (
-    <div className={styles.portfolio}>
-      <h3>Check out my projects!</h3>
-      <ul className={styles.portfolio_list}>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-        <li>Item 5</li>
-      </ul>
+    <section className={styles.projects}>
+      <h2>PROJECTS</h2>
+      {children}
+    </section>
+  );
+}
+
+function Project({
+  projectDescription,
+  projectTitle,
+  images,
+  stackArrayNames,
+}) {
+  // Let images be an array of images
+  // Let stackArrayNames be an array of strings with each string being the name of a tool.
+  return (
+    <div className={styles.projects_project}>
+      <div className={styles.projects_project_description}>
+        <h2>{projectTitle}</h2>
+        <p>{projectDescription}</p>
+        <button>visit repo &rArr;</button>
+      </div>
+      <div className={styles.projects_project_images}>
+        {images.map((image, index) => (
+          <img src={image} key={index} alt={`Image ${index}`} />
+        ))}
+        ;
+      </div>
+      <div className={styles.projects_project_stack}>
+        <ul>
+          {stackArrayNames.map((name) => (
+            <li>&rarr;{name}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

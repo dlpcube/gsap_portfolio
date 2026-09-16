@@ -391,8 +391,10 @@ function CourseLoad({ children }) {
 function Course({ courseName, courseDescription }) {
   return (
     <div className={styles.courseLoad_course}>
-      <h2>{courseName}</h2>
-      <p>{courseDescription}</p>
+      <div className={styles.courseLoad_course_content}>
+        <h2>{courseName}</h2>
+        <p>{courseDescription}</p>
+      </div>
     </div>
   );
 }

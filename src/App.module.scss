@@ -444,6 +444,7 @@ $gap-size-courseLoad: 1.5vw;
   display: flex;
   flex-direction: column;
   gap: $gap-size-courseLoad;
+  width: 100%;
   & > :not(:last-child) {
     position: relative;
     // border-bottom: 1px solid black;
@@ -457,7 +458,7 @@ $gap-size-courseLoad: 1.5vw;
     height: 1px;
     background-color: black;
 
-    bottom: calc($gap-size-main / -2);
+    bottom: calc($gap-size-courseLoad / -2);
   }
 
   & h1 {
@@ -467,6 +468,19 @@ $gap-size-courseLoad: 1.5vw;
     font-size: 12vh;
   }
   &_course {
+    &_content {
+      width: 70%;
+    }
+    & h2 {
+      font-family: "Times New Roman", Times, serif;
+      text-transform: uppercase;
+      font-size: 3vw;
+      font-weight: 500;
+    }
+    & p {
+      font-family: "Rubik", sans-serif;
+      font-size: 1vw;
+    }
   }
 }
 

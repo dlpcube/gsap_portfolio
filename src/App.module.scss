@@ -470,7 +470,13 @@ $gap-size-courseLoad: 1.5vw;
   }
 }
 
+$max-height-sec: 0.6s;
+$opacity-sec: 0.7s;
+
 .projects {
+  transition:
+    max-height $max-height-sec ease-in-out,
+    opacity $opacity-sec ease-in-out;
   width: 100%;
   & h1 {
     font-family: "Times New Roman", Times, serif;
@@ -501,24 +507,45 @@ $gap-size-courseLoad: 1.5vw;
   &_project {
     display: flex;
     gap: 2vw;
+    transition:
+      max-height $max-height-sec ease-in-out,
+      opacity $opacity-sec ease-in-out;
+
+    &_minimized {
+      max-height: 0;
+      opacity: 0;
+    }
     &_description {
       display: flex;
       flex-direction: column;
       gap: 2vh;
       width: 50%;
+      transition:
+        max-height $max-height-sec ease-in-out,
+        opacity $opacity-sec ease-in-out;
+
+      &_details {
+        transition:
+          max-height $max-height-sec ease-in-out,
+          opacity $opacity-sec ease-in-out;
+
+        & p {
+          font-family: "Rubik", sans-serif;
+          font-size: 1vw;
+          // font-weight: 500;
+        }
+      }
       & h2 {
         font-family: "Rubik", sans-serif;
         font-size: 3vw;
         font-weight: 500;
       }
-
-      & p {
-        font-family: "Rubik", sans-serif;
-        font-size: 1vw;
-        // font-weight: 500;
-      }
     }
     &_images {
+      transition:
+        max-height $max-height-sec ease-in-out,
+        opacity $opacity-sec ease-in-out;
+
       width: 25%;
       position: relative;
       padding-top: 5vh;
@@ -552,6 +579,9 @@ $gap-size-courseLoad: 1.5vw;
       }
     }
     &_stack {
+      transition:
+        max-height $max-height-sec ease-in-out,
+        opacity $opacity-sec ease-in-out;
     }
   }
 }

@@ -425,21 +425,41 @@ function Project({
     >
       <div className={styles.projects_project_description}>
         <h2>{projectTitle}</h2>
-        <p>{projectDescription}</p>
-        <a
-          href={`https://github.com/dlpcube/${repoName}`}
-          target="_blank"
-          rel="noopenner noreferrer"
+        <div
+          className={
+            isHovered
+              ? `${styles.projects_project_description_details}`
+              : `${styles.projects_project_minimized}`
+          }
         >
-          visit repo &rArr;
-        </a>
+          <p>{projectDescription}</p>
+          <a
+            href={`https://github.com/dlpcube/${repoName}`}
+            target="_blank"
+            rel="noopenner noreferrer"
+          >
+            visit repo &rArr;
+          </a>
+        </div>
       </div>
-      <div className={styles.projects_project_images}>
+      <div
+        className={
+          isHovered
+            ? `${styles.projects_project_images}`
+            : `${styles.projects_project_minimized}`
+        }
+      >
         {images.map((image, index) => (
           <img src={image} key={index} alt={`Image ${index}`} />
         ))}
       </div>
-      <div className={styles.projects_project_stack}>
+      <div
+        className={
+          isHovered
+            ? `${styles.projects_project_stack}`
+            : `${styles.projects_project_minimized}`
+        }
+      >
         <ul>
           {stackArrayNames.map((name) => (
             <li>&rarr;{name}</li>

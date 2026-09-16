@@ -357,7 +357,7 @@ $gap-size-about: 5vw;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      height: 90vh;
+      height: 111.5%;
       right: calc(#{$gap-size-about} / -2);
       width: 1px;
       background-color: black;
@@ -463,15 +463,20 @@ $gap-size-courseLoad: 1.5vw;
   & h1 {
     font-family: "Times New Roman", Times, serif;
     text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12vh;
   }
   &_course {
   }
 }
 
 .projects {
+  width: 100%;
   & h1 {
     font-family: "Times New Roman", Times, serif;
     text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12vh;
   }
 
   display: flex;
@@ -492,6 +497,63 @@ $gap-size-courseLoad: 1.5vw;
 
     bottom: calc($gap-size-main / -2);
   }
+
+  &_project {
+    display: flex;
+    gap: 2vw;
+    &_description {
+      display: flex;
+      flex-direction: column;
+      gap: 2vh;
+      width: 50%;
+      & h2 {
+        font-family: "Rubik", sans-serif;
+        font-size: 3vw;
+        font-weight: 500;
+      }
+
+      & p {
+        font-family: "Rubik", sans-serif;
+        font-size: 1vw;
+        // font-weight: 500;
+      }
+    }
+    &_images {
+      width: 25%;
+      position: relative;
+      padding-top: 5vh;
+
+      &:hover {
+        & img:nth-child(1) {
+          transform: translatex(25vw);
+        }
+      }
+
+      & img:nth-child(1) {
+        position: absolute;
+        top: 14px;
+        // left: 20px;
+        left: -25px;
+        // bottom: 20px;
+        width: 22vw;
+        height: auto;
+        z-index: 21;
+        transition: transform 0.3s ease;
+      }
+      & img:nth-child(2) {
+        display: block;
+        // top: 30px;
+        // left: 20px;
+        // right: 20px;
+        // bottom: 20px;
+        width: 24vw;
+        height: auto;
+        z-index: 20;
+      }
+    }
+    &_stack {
+    }
+  }
 }
 
 .portfolio_list {
@@ -504,23 +566,43 @@ $gap-size-courseLoad: 1.5vw;
 /*
 ***** CONTACT SECTION
 */
-
+$gap-size-section_contact: 3vw;
 .section_contact {
   //   position: relative;
-  width: 80%;
+  width: 100%;
   height: 65vh;
   // background-color: var(--color-primary-400);
   background-color: #fff;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem 5rem;
+  align-items: center;
+  gap: $gap-size-section_contact;
+  // justify-content: center;
+  // padding: 2rem 5rem;
   //   padding: 0rem 10rem 0rem 10rem;
-  overflow: hidden;
+  // overflow: hidden;
   &_form_title {
+    margin-left: 3vw;
     & h1 {
       font-family: "Times New Roman", Times, serif;
       text-transform: uppercase;
+      font-weight: 500;
+      font-size: 18vh;
+      // font-size: 19vh;
+    }
+  }
+
+  > :not(:last-child) {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 100%;
+      right: calc(#{$gap-size-about} / -2);
+      width: 1px;
+      background-color: black;
     }
   }
 }
@@ -685,21 +767,6 @@ $gap-size-courseLoad: 1.5vw;
     align-items: left;
     // width: 100%;
   }
-}
-
-.card {
-  gap: 12vw;
-  width: 80%;
-  margin: 0 auto;
-  box-shadow: 0 3rem 6rem rgba(#000, 0.1);
-  background-color: var(--color-neutral-100);
-  border-radius: 3px;
-  padding: 6rem;
-  padding-left: 9rem;
-  font-size: 1rem;
-  transform: skewX(-8deg);
-  display: flex;
-  justify-content: center;
 }
 
 .footer_gridContainer {

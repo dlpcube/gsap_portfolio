@@ -413,10 +413,16 @@ function Project({
   stackArrayNames,
   repoName,
 }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   // Let images be an array of images
   // Let stackArrayNames be an array of strings with each string being the name of a tool.
   return (
-    <div className={styles.projects_project}>
+    <div
+      className={styles.projects_project}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className={styles.projects_project_description}>
         <h2>{projectTitle}</h2>
         <p>{projectDescription}</p>
@@ -432,7 +438,6 @@ function Project({
         {images.map((image, index) => (
           <img src={image} key={index} alt={`Image ${index}`} />
         ))}
-        ;
       </div>
       <div className={styles.projects_project_stack}>
         <ul>

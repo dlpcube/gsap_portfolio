@@ -70,18 +70,34 @@ function App() {
         <About />
         <CourseLoad>
           <Course
-            courseName="Test"
-            courseDescription="This is a really long paragraph"
+            courseName="Analysis"
+            courseDescription="Intro to rigorous analysis on the real line. Topics include: the real number system, 
+sequences and series of numbers, functions of a real variable (continuity and differentiability), 
+the Riemann integral, basic topological notions in a metric space, sequences and series of 
+functions including Taylor and Fourier series."
+          />
+          <Course
+            courseName="Discrete Mathematics"
+            courseDescription="One-semester introduction to discrete mathematics with an emphasis on the 
+understanding, composition and critiquing of mathematical proofs."
+          />
+          <Course
+            courseName="Intro to Comp Sci"
+            courseDescription="Students learn how to design algorithms to solve problems and how to translate these algorithms into working computer programs. Experience is acquired through programming projects in a high level programming language."
           />
         </CourseLoad>
         <Projects>
           {/* Let images be an array of images */}
           {/* Let stackArrayNames be an array of strings with each string being the name of a tool. */}
           <Project
-            projectDescription="A magnetic field type of thing"
+            projectDescription="A 3D magnetic field visualizer made with an OpenGL backend. Implements lighting and 
+vectors to show the direction and strength of the field at different cartesian coordinates. 
+Field strength is also contingent on the object shape and material just like in real life. 
+Also implements a 3D camera for user control."
             projectTitle="magneticfield-gl"
             images={imagesMag}
             stackArrayNames={stackArrayNames1}
+            repoName="magneticfield-gl"
           />
           <Project
             projectDescription="A gsap based portfolio made in Next.js, React, SCSS, and GSAP"
@@ -95,6 +111,21 @@ function App() {
               "HTML",
               "JavaScript",
             ]}
+            repoName="gsap_portfolio"
+          />
+          <Project
+            projectDescription="Visit my Github to see what I've been working on."
+            projectTitle="coming soon..."
+            images={imagesGSP}
+            stackArrayNames={[
+              "React",
+              "Next.JS",
+              "GSAP library",
+              "SCSS",
+              "HTML",
+              "JavaScript",
+            ]}
+            repoName=""
           />
         </Projects>
         {/* <Resume /> */}
@@ -351,7 +382,7 @@ function About() {
 function CourseLoad({ children }) {
   return (
     <section className={styles.courseLoad}>
-      <h2>COURSE LOAD</h2>
+      <h1>COURSE LOAD</h1>
       {children}
     </section>
   );
@@ -369,7 +400,7 @@ function Course({ courseName, courseDescription }) {
 function Projects({ children }) {
   return (
     <section className={styles.projects}>
-      <h2>PROJECTS</h2>
+      <h1>PROJECTS</h1>
       {children}
     </section>
   );
@@ -380,6 +411,7 @@ function Project({
   projectTitle,
   images,
   stackArrayNames,
+  repoName,
 }) {
   // Let images be an array of images
   // Let stackArrayNames be an array of strings with each string being the name of a tool.
@@ -388,7 +420,13 @@ function Project({
       <div className={styles.projects_project_description}>
         <h2>{projectTitle}</h2>
         <p>{projectDescription}</p>
-        <button>visit repo &rArr;</button>
+        <a
+          href={`https://github.com/dlpcube/${repoName}`}
+          target="_blank"
+          rel="noopenner noreferrer"
+        >
+          visit repo &rArr;
+        </a>
       </div>
       <div className={styles.projects_project_images}>
         {images.map((image, index) => (
@@ -419,48 +457,31 @@ function Contact() {
   /* REFS FOR CONTACT SECTION SCROLL TRIGGER */
   const contactRef = useRef(null);
 
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: contactRef.current,
-        // start: "top 120px",
-        start: "-1000px top",
-        end: "-450px top",
-        scrub: true,
-        // markers: true,
-        // onEnter: () => entrancetl.progress(1),
-        // onLeaveBack: () => mastertl.progress(0),
-      },
-    });
-    tl.from(contactRef.current, {
-      autoAlpha: 0,
-      y: 300,
-      ease: Power3.easeInOut,
-    });
-  });
+  // useGSAP(() => {
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: contactRef.current,
+  //       // start: "top 120px",
+  //       start: "-1000px top",
+  //       end: "-450px top",
+  //       scrub: true,
+  //       // markers: true,
+  //       // onEnter: () => entrancetl.progress(1),
+  //       // onLeaveBack: () => mastertl.progress(0),
+  //     },
+  //   });
+  //   tl.from(contactRef.current, {
+  //     autoAlpha: 0,
+  //     y: 300,
+  //     ease: Power3.easeInOut,
+  //   });
+  // });
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const data = {
-  //     name: formData.get("name"),
-  //     email: formData.get("email"),
-  //     message: formData.get("message"),
-  //   };
-  //   console.log(data.name);
-  //   console.log(data.email);
-  //   console.log(data.message);
-
-  //   // Clear each input after submit
-  //   setFormData({ name: "", email: "", message: "" });
-
-  //   // Block that sends data to backend (using vercel) <= DO LATER
-  // }
 
   const [state, handleSubmit] = useForm("meaqzndj");
 
@@ -470,7 +491,8 @@ function Contact() {
 
   return (
     <section className={styles.section_contact} ref={contactRef}>
-      <div className={styles.contact}>
+      <div className={styles.section_contact_form_title}>
+        <h1>Ask a Question</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.form_inputs}>
             <div className={styles.form_group}>
@@ -559,71 +581,12 @@ function Contact() {
             </button>
           </div>
         </form>
-        <div className={styles.contact_social_container}>
-          <div className={styles.contact_form_heading2}>
-            <h1>Contact</h1>
-          </div>
-          <div className={styles.contact_social_container_icons}>
-            <div className={styles.contact_social_container_icons_container}>
-              <div className={styles.contact_social_container_icons_group}>
-                <a
-                  href="mailto:diego@dlprd.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {/* <Icon
-                  name="email"
-                  size={32}
-                  className={styles.footer_iconContainer_icon}
-                /> */}
-                  <h2>Email</h2>
-                </a>
-              </div>
-
-              <div className={styles.contact_social_container_icons_group}>
-                <a
-                  href="https://www.linkedin.com/in/ddlpr/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {/* <Icon
-                  name="linkedin"
-                  size={32}
-                  className={styles.footer_iconContainer_icon}
-                /> */}
-                  <h2>LinkedIn</h2>
-                </a>
-              </div>
-              <div className={styles.contact_social_container_icons_group}>
-                <a
-                  href="https://www.instagram.com/ddelapaz333/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {/* <Icon
-                  name="instagram"
-                  size={32}
-                  className={styles.footer_iconContainer_icon}
-                /> */}
-                  <h2>Instagram</h2>
-                </a>
-              </div>
-              <div className={styles.contact_social_container_icons_group}>
-                <a
-                  href="https://www.facebook.com/diego.de.la.paz.90317/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {/* <Icon
-                  name="facebook"
-                  size={32}
-                  className={styles.footer_iconContainer_icon}
-                /> */}
-                  <h2>Facebook</h2>
-                </a>
-              </div>
-            </div>
-          </div>
+      </div>
+      <div className={styles.contact_social_container}>
+        <div className={styles.contact_social_container_icons}>
+          <div
+            className={styles.contact_social_container_icons_container}
+          ></div>
         </div>
       </div>
     </section>

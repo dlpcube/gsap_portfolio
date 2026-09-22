@@ -4,8 +4,6 @@
 
 [Demo](https://dlprd.com)
 
-![preview gif/screenshot]
-
 ## Features
 
 - Parallax Effect with `scrolltrigger()`

@@ -130,14 +130,7 @@ Also implements a 3D camera for user control."
               projectDescription="Visit my Github to see what I've been working on."
               projectTitle="coming soon..."
               images={imagesGSP}
-              stackArrayNames={[
-                "React",
-                "Next.JS",
-                "GSAP library",
-                "SCSS",
-                "HTML",
-                "JavaScript",
-              ]}
+              stackArrayNames={[]}
               repoName=""
             />
           </Projects>
@@ -299,7 +292,12 @@ function CoverStack({ children }) {
         tl.fromTo(
           panel,
           { xPercent: 100 },
-          { xPercent: 0, ease: PANEL_EASE, immediateRender: false, force3D: true },
+          {
+            xPercent: 0,
+            ease: PANEL_EASE,
+            immediateRender: false,
+            force3D: true,
+          },
           i - 1,
         ).fromTo(
           panels[i - 1],
@@ -456,9 +454,9 @@ function RightCol() {
 
 function About() {
   const paragraph1 =
-    "My name is Diego. I specialize in mathematics and computer science  at New York University.  I love learning how to use math in combination with computer science to build unique algorithms to solve a myriad a problems or to gain more insight. For example, mathematical modeling to better understand physical phenomena.";
+    "I'm Diego, a Computer Science and Mathematics student at New York University. I'm drawn to the intersection of the two fields, using mathematical reasoning to design algorithms that solve real problems and to uncover deeper insight into how systems behave. One area I find especially compelling is mathematical modeling, particularly as a tool for understanding physical phenomena.";
   const paragraph2 =
-    "My hobbies include playing piano, digital sculpting, and drawing.";
+    "Outside of my academic work, I play piano, sculpt digitally, and draw, creative outlets that keep me engaged with process and craft in ways that complement the analytical side of my studies.";
 
   return (
     <section className={styles.about}>
@@ -570,7 +568,7 @@ function Project({
       >
         <ul>
           {stackArrayNames.map((name) => (
-            <li>&rarr;{name}</li>
+            <li>{name}</li>
           ))}
         </ul>
       </div>
@@ -727,12 +725,12 @@ function Contact() {
 }
 
 function Footer() {
-  function scrollToTop() {
-    lenis.scrollTo(0, {
-      duration: 2.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
-  }
+  //function scrollToTop() {
+  lenis.scrollTo(0, {
+    duration: 2.5,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  });
+  //}
 
   return (
     <footer className={styles.footer_gridContainer}>
@@ -747,7 +745,7 @@ function Footer() {
           JavaScript libraries such as React&trade;, GSAP&trade;, Lenis&trade;,
           and Next.JS&trade;. Terms and conditions may apply. dlprd.com&trade;
           is not responsible for any judgments or actions that may cause
-          financial, physical, and spiritual harm.
+          financial and physical harm.
         </p>
       </div>
       <div className={styles.footer_gridContainer_socialIcon1}>
@@ -778,7 +776,8 @@ function Footer() {
       </div>
       <div className={styles.footer_gridContainer_socialIcon3}>
         <a
-          href="https://www.facebook.com/diego.de.la.paz.90317/"
+          // href="https://www.facebook.com/diego.de.la.paz.90317/"
+          href="#"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -803,7 +802,9 @@ function Footer() {
         </a>
       </div>
       <div className={styles.footer_gridContainer_button}>
-        <button onClick={scrollToTop}>To the Top</button>
+        <a href="#" className={styles.button_contact}>
+          To the Top
+        </a>
       </div>
       <div className={styles.footer_gridContainer_empty} />
       <div className={styles.footer_gridContainer_head1}>

@@ -2,7 +2,7 @@
 
 > A gsap based portfolio made in Next.js, React, Tailwind CSS, and GSAP.
 
-[Demo](https://dlprd.com)
+[Live Website Link](https://dlprd.com)
 
 ## Features
 

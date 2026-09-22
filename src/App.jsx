@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useEffect } from "react";
+import { useState, useLayoutEffect, useEffect, Children } from "react";
 import { useRef } from "react";
 
 // FORMSPREE NPM PACKAGE
@@ -31,7 +31,7 @@ const iconMap = {
   email: EmailIcon,
 };
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const lenis = new Lenis({
   wheelMultiplier: 0.8,
@@ -41,13 +41,25 @@ const lenis = new Lenis({
 
 function App() {
   /* Initializing Smooth Scroll */
-  useEffect(() => {
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+  // useEffect(() => {
+  //   function raf(time) {
+  //     lenis.raf(time);
+  //     requestAnimationFrame(raf);
+  //   }
 
-    requestAnimationFrame(raf);
+  //   requestAnimationFrame(raf);
+  // }, []);
+
+  useEffect(() => {
+    lenis.on("scroll", ScrollTrigger.update);
+
+    const update = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(update);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove(update);
+    };
   }, []);
 
   // const container = useRef(null);
@@ -63,73 +75,76 @@ function App() {
   return (
     <div className={styles.container}>
       <Main>
-        <Home>
-          <Title />
-          <RightCol />
-        </Home>
-        <About />
-        <CourseLoad>
-          <Course
-            courseName="Analysis"
-            courseDescription="Intro to rigorous analysis on the real line. Topics include: the real number system, 
+        <CoverStack>
+          <Home>
+            <Title />
+            <RightCol />
+          </Home>
+          <About />
+          <CourseLoad>
+            <Course
+              courseName="Analysis"
+              courseDescription="Intro to rigorous analysis on the real line. Topics include: the real number system, 
 sequences and series of numbers, functions of a real variable (continuity and differentiability), 
 the Riemann integral, basic topological notions in a metric space, sequences and series of 
 functions including Taylor and Fourier series."
-          />
-          <Course
-            courseName="Discrete Mathematics"
-            courseDescription="One-semester introduction to discrete mathematics with an emphasis on the 
+            />
+            <Course
+              courseName="Discrete Mathematics"
+              courseDescription="One-semester introduction to discrete mathematics with an emphasis on the 
 understanding, composition and critiquing of mathematical proofs."
-          />
-          <Course
-            courseName="Intro to Comp Sci"
-            courseDescription="Students learn how to design algorithms to solve problems and how to translate these algorithms into working computer programs. Experience is acquired through programming projects in a high level programming language."
-          />
-        </CourseLoad>
-        <Projects>
-          {/* Let images be an array of images */}
-          {/* Let stackArrayNames be an array of strings with each string being the name of a tool. */}
-          <Project
-            projectDescription="A 3D magnetic field visualizer made with an OpenGL backend. Implements lighting and 
+            />
+            <Course
+              courseName="Intro to Comp Sci"
+              courseDescription="Students learn how to design algorithms to solve problems and how to translate these algorithms into working computer programs. Experience is acquired through programming projects in a high level programming language."
+            />
+          </CourseLoad>
+          <Projects>
+            {/* Let images be an array of images */}
+            {/* Let stackArrayNames be an array of strings with each string being the name of a tool. */}
+            <Project
+              projectDescription="A 3D magnetic field visualizer made with an OpenGL backend. Implements lighting and 
 vectors to show the direction and strength of the field at different cartesian coordinates. 
 Field strength is also contingent on the object shape and material just like in real life. 
 Also implements a 3D camera for user control."
-            projectTitle="magneticfield-gl"
-            images={imagesMag}
-            stackArrayNames={stackArrayNames1}
-            repoName="magneticfield-gl"
-          />
-          <Project
-            projectDescription="A gsap based portfolio made in Next.js, React, SCSS, and GSAP"
-            projectTitle="gsap-portfolio"
-            images={imagesGSP}
-            stackArrayNames={[
-              "React",
-              "Next.JS",
-              "GSAP library",
-              "SCSS",
-              "HTML",
-              "JavaScript",
-            ]}
-            repoName="gsap_portfolio"
-          />
-          <Project
-            projectDescription="Visit my Github to see what I've been working on."
-            projectTitle="coming soon..."
-            images={imagesGSP}
-            stackArrayNames={[
-              "React",
-              "Next.JS",
-              "GSAP library",
-              "SCSS",
-              "HTML",
-              "JavaScript",
-            ]}
-            repoName=""
-          />
-        </Projects>
-        {/* <Resume /> */}
-        <Contact />
+              projectTitle="magneticfield-gl"
+              images={imagesMag}
+              stackArrayNames={stackArrayNames1}
+              repoName="magneticfield-gl"
+            />
+            <Project
+              projectDescription="A gsap based portfolio made in Next.js, React, SCSS, and GSAP"
+              projectTitle="gsap-portfolio"
+              images={imagesGSP}
+              stackArrayNames={[
+                "React",
+                "Next.JS",
+                "GSAP library",
+                "SCSS",
+                "HTML",
+                "JavaScript",
+              ]}
+              repoName="gsap_portfolio"
+            />
+            <Project
+              projectDescription="Visit my Github to see what I've been working on."
+              projectTitle="coming soon..."
+              images={imagesGSP}
+              stackArrayNames={[
+                "React",
+                "Next.JS",
+                "GSAP library",
+                "SCSS",
+                "HTML",
+                "JavaScript",
+              ]}
+              repoName=""
+            />
+          </Projects>
+
+          {/* <Resume /> */}
+          <Contact />
+        </CoverStack>
         <Footer />
       </Main>
     </div>
@@ -170,6 +185,209 @@ function Sandwich() {
 
 function Main({ children }) {
   return <main className={styles.main}>{children}</main>;
+}
+
+// function Main({ children }) {
+//   const root = useRef(null);
+
+//   useGSAP(
+//     () => {
+//       // direct children of <main>: Home, About, CourseLoad, Projects, Contact, Footer
+//       const sections = gsap.utils.toArray(root.current.children);
+
+//       // skip Home (index 0, already on screen) and Footer (last)
+//       sections.slice(1, -1).forEach((section) => {
+//         gsap.fromTo(
+//           section,
+//           { xPercent: 100 },
+//           {
+//             xPercent: 0,
+//             ease: "power2.out",
+//             scrollTrigger: {
+//               trigger: section,
+//               start: "top bottom",
+//               end: "top 30%",
+//               scrub: 1,
+//               invalidateOnRefresh: true,
+//             },
+//           },
+//         );
+//       });
+
+//       // Your Course/Project cards expand on hover, which changes the page height
+//       // and would leave the trigger positions below them stale. Refresh when
+//       // the height changes.
+//       let timeout;
+//       const ro = new ResizeObserver(() => {
+//         clearTimeout(timeout);
+//         timeout = setTimeout(() => ScrollTrigger.refresh(), 150);
+//       });
+//       ro.observe(root.current);
+
+//       return () => {
+//         ro.disconnect();
+//         clearTimeout(timeout);
+//       };
+//     },
+//     { scope: root },
+//   );
+
+//   return (
+//     <main ref={root} className={styles.main}>
+//       {children}
+//     </main>
+//   );
+// }
+
+// Easing for one panel-to-panel slide. The timeline is scrubbed, so this is
+// what each transition feels like as you scroll through it: "none" tracks the
+// wheel linearly, an inOut curve eases off both ends of the slide. Raise the
+// power (power3/power4.inOut) for a harder snap into place.
+const PANEL_EASE = "power2.inOut";
+
+function CoverStack({ children }) {
+  const outer = useRef(null);
+  const inner = useRef(null);
+
+  useGSAP(
+    () => {
+      const panels = gsap.utils.toArray(inner.current.children);
+      if (panels.length < 2) return;
+
+      // Later panels sit on top of earlier ones, and every panel but the first
+      // starts parked off-screen right. This has to be an explicit set: the
+      // fromTo() tweens below run with immediateRender:false, so their "from"
+      // values are not applied until each tween's turn comes up.
+      panels.forEach((p, i) =>
+        gsap.set(p, { zIndex: i, xPercent: i === 0 ? 0 : 100 }),
+      );
+
+      // The outer wrapper is n * 100vh tall and the stack inside it is
+      // `position: sticky`, so the browser does the pinning natively. We
+      // deliberately do NOT use ScrollTrigger's `pin: true` here: it wraps the
+      // section in a .pin-spacer, which (a) gets no padding when its parent is
+      // a flex container like <main>, and (b) reparents a DOM node React owns,
+      // which crashes StrictMode's unmount.
+      outer.current.style.height = panels.length * 100 + "vh";
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: outer.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+          // Snap has to be handed off to Lenis. ScrollTrigger's own snap uses
+          // native scrolling, which Lenis immediately overrides -> jitter.
+          snap: {
+            snapTo: 1 / (panels.length - 1),
+            duration: 0.6,
+            onStart: () => lenis.stop(),
+            onComplete: () => lenis.start(),
+          },
+          invalidateOnRefresh: true,
+        },
+      });
+
+      panels.forEach((panel, i) => {
+        if (i === 0) return;
+        // Both panels in a transition must share an ease, or the outgoing one
+        // drifts out of step with the incoming one and the seam between them
+        // opens up mid-slide.
+        // force3D keeps each panel on its own compositing layer for the whole
+        // scrub. Without it the 1px divider pseudo-elements inside .projects
+        // land on fractional pixels every frame and flicker.
+        tl.fromTo(
+          panel,
+          { xPercent: 100 },
+          { xPercent: 0, ease: PANEL_EASE, immediateRender: false, force3D: true },
+          i - 1,
+        ).fromTo(
+          panels[i - 1],
+          { xPercent: 0 },
+          {
+            xPercent: -30,
+            ease: PANEL_EASE,
+            immediateRender: false,
+            force3D: true,
+          },
+          i - 1,
+        );
+      });
+
+      ScrollTrigger.refresh();
+
+      // The Course/Project cards grow on hover, which changes page height and
+      // leaves every trigger position below them stale.
+      let timeout;
+      const ro = new ResizeObserver(() => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => ScrollTrigger.refresh(), 150);
+      });
+      ro.observe(document.body);
+
+      return () => {
+        ro.disconnect();
+        clearTimeout(timeout);
+      };
+    },
+    { scope: outer },
+  );
+
+  // Each child is wrapped in its own panel div. The panel owns the geometry
+  // (full bleed, opaque, clipped); the section inside keeps whatever height it
+  // was designed with. Without this, a section shorter than the viewport --
+  // .about is 90vh, .section_contact is 65vh -- leaves a transparent strip that
+  // the panel below shows through.
+  return (
+    <div ref={outer} className={styles.coverStackOuter}>
+      <section className={styles.coverStack}>
+        <div ref={inner} className={styles.coverStackInner}>
+          {Children.map(children, (child) => (
+            <div className={styles.coverStackPanel}>{child}</div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function HorizontalTrack({ children, snap = true }) {
+  const root = useRef(null);
+  const track = useRef(null);
+
+  useGSAP(
+    () => {
+      const panels = gsap.utils.toArray(track.current.children);
+      if (panels.length < 2) return;
+
+      // how far the row must travel to bring the last panel flush left
+      const distance = () => track.current.scrollWidth - window.innerWidth;
+
+      gsap.to(track.current, {
+        x: () => -distance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: root.current,
+          pin: true,
+          anticipatePin: 1,
+          scrub: 1,
+          start: "top top",
+          end: () => "+=" + distance(), // vertical scroll budget == horizontal travel
+          snap: snap ? 1 / (panels.length - 1) : false, // the "PowerPoint" click
+          invalidateOnRefresh: true, // recompute on resize
+        },
+      });
+    },
+    { scope: root },
+  );
+
+  return (
+    <section ref={root} className={styles.hTrack}>
+      <div ref={track} className={styles.hTrackInner}>
+        {children}
+      </div>
+    </section>
+  );
 }
 
 function Home({ children }) {
@@ -265,10 +483,22 @@ function CourseLoad({ children }) {
 }
 
 function Course({ courseName, courseDescription }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className={styles.courseLoad_course}>
-      <div className={styles.courseLoad_course_content}>
-        <h2>{courseName}</h2>
+    <div
+      className={styles.courseLoad_course}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <h2>{courseName}</h2>
+      <div
+        className={
+          isHovered
+            ? `${styles.courseLoad_course_content}`
+            : `${styles.courseLoad_course_minimized}`
+        }
+      >
         <p>{courseDescription}</p>
       </div>
     </div>

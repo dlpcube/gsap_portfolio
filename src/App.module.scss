@@ -357,7 +357,11 @@ $gap-size-about: 5vw;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      height: 111.5%;
+      // Full viewport height rather than a multiple of the title's box, so the
+      // rule runs edge to edge. The title's centre line is also the panel's
+      // centre line, and .coverStackPanel clips, so this lands exactly on the
+      // panel's top and bottom.
+      height: 100vh;
       right: calc(#{$gap-size-about} / -2);
       width: 1px;
       background-color: black;
@@ -468,19 +472,123 @@ $gap-size-courseLoad: 1.5vw;
     font-size: 12vh;
   }
   &_course {
-    &_content {
-      width: 70%;
-    }
     & h2 {
       font-family: "Times New Roman", Times, serif;
       text-transform: uppercase;
       font-size: 3vw;
       font-weight: 500;
     }
+    &_content {
+      width: 70%;
+    }
+
+    // overflow + pointer-events are load-bearing: max-height alone collapses
+    // the box but leaves the content painted outside it and still hit-testable,
+    // so it spills into the gap below and steals the hover from the next row.
+    &_minimized {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
     & p {
       font-family: "Rubik", sans-serif;
       font-size: 1vw;
     }
+  }
+}
+
+.hTrack {
+  position: relative;
+  width: 100%;
+  align-self: stretch; // .main has align-items: center
+  height: 100vh;
+  overflow: hidden; // hides panels parked off-screen right
+
+  &::after {
+    display: none;
+  } // kill .main's divider line on this block
+}
+
+.hTrackInner {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  will-change: transform;
+
+  > * {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+// Scroll track. Its height is set in JS to (panel count * 100vh) — that is the
+// scroll distance the slideshow runs over. Block-level, so the sticky child
+// below is not a flex item of <main>.
+.coverStackOuter {
+  position: relative;
+  width: 100%;
+  align-self: stretch;
+
+  // .main's divider rule (`& > :not(:last-child)::after`) lands on this
+  // wrapper and draws the line at the very bottom of the 500vh track — i.e.
+  // between the last panel and the footer, which is where it belongs. Left
+  // enabled on purpose.
+  //
+  // It normally floats at the midpoint of .main's flex gap (bottom: -21.6px).
+  // Pulled flush to the track's bottom edge instead, because the panels clip
+  // their contents (overflow: hidden) and a vertical rule inside a panel can
+  // only ever reach that edge — anywhere lower and it can't meet this line.
+  // The :not(:last-child) is there to match .main's specificity, not to
+  // filter anything.
+  &:not(:last-child)::after {
+    bottom: 0;
+  }
+}
+
+// Sticky does the pinning natively — no ScrollTrigger pin, no .pin-spacer.
+.coverStack {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.coverStackInner {
+  position: relative;
+  height: 100%;
+}
+
+// One panel per section. Always full-bleed and opaque, whatever height the
+// section inside happens to be, so a short section can't reveal the panel
+// underneath it. Content is centred vertically rather than left hanging at the
+// top of a taller box.
+.coverStackPanel {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  // Own compositing layer: stops the 1px divider lines inside .projects from
+  // flickering while the panel is being translated.
+  will-change: transform;
+  backface-visibility: hidden;
+
+  // Short sections stay centred; a section with no height of its own (.home)
+  // is clamped to the panel instead of overflowing and being clipped at both
+  // ends.
+  > * {
+    width: 100%;
+    max-height: 100%;
+    flex: 0 1 auto;
   }
 }
 
@@ -525,9 +633,14 @@ $opacity-sec: 0.7s;
       max-height $max-height-sec ease-in-out,
       opacity $opacity-sec ease-in-out;
 
+    // See the note on courseLoad's _minimized: without overflow/pointer-events
+    // the collapsed content overflows into the gap between rows and traps the
+    // cursor in an expand/collapse oscillation.
     &_minimized {
       max-height: 0;
       opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
     }
     &_description {
       display: flex;
@@ -643,7 +756,10 @@ $gap-size-section_contact: 3vw;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      height: 100%;
+      // Full viewport height, matching .about's rule. The title is centred in
+      // the section and the section is centred in the panel, so this lands on
+      // the panel's top and bottom edges, where .coverStackPanel clips it.
+      height: 100vh;
       right: calc(#{$gap-size-about} / -2);
       width: 1px;
       background-color: black;
